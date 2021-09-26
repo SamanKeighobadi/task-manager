@@ -1,5 +1,6 @@
 import React, { useContext } from "react";
 import { TaskListContext } from "../context/TaskListContext";
+import NoTask from "./NoTask";
 import Task from "./Task";
 
 const TaskList = () => {
@@ -7,7 +8,7 @@ const TaskList = () => {
   return (
     <div>
       {tasks.length === 0 ? (
-        <h1>NO Taks</h1>
+        <NoTask />
       ) : (
         <div>
           {tasks.map((task, index) => (
