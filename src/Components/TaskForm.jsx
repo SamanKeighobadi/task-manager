@@ -23,7 +23,6 @@ const TaskForm = () => {
           type="text"
           name="task"
           onChange={handleTextChange}
-          required
           autoFocus
           placeholder=" Add task ..."
           className="block w-11/12 mx-auto rounded-full px-3 py-1 shadow-sm focus:outline-none hover:shadow-lg mt-2"

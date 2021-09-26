@@ -2,7 +2,7 @@ import React, { createContext, useState } from "react";
 
 export const TaskListContext = createContext({
   tasks: [],
-  editTask:'',
+  editTask: "",
   addNewTask: () => {},
   deleteTask: () => {},
   clearTask: () => {},
@@ -20,7 +20,9 @@ const TaskListContextProvider = ({ children }) => {
   const [editTask, setEditTask] = useState("");
 
   const addNewTask = (text) => {
-    setTasks([...tasks, { text, id: Math.floor(Math.random() * 1000) }]);
+    if (text !== "" && text !== " ") {
+      setTasks([...tasks, { text, id: Math.floor(Math.random() * 1000) }]);
+    }
   };
   const deleteTask = (id) => {
     const filteredTask = tasks.filter((task) => task.id !== id);
