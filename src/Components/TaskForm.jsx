@@ -2,7 +2,7 @@ import React, { useContext, useState } from "react";
 import { TaskListContext } from "../context/TaskListContext";
 
 const TaskForm = () => {
-  const { addNewTask } = useContext(TaskListContext);
+  const { addNewTask,clearTask} = useContext(TaskListContext);
 
   const [text, setText] = useState("");
 
@@ -16,6 +16,8 @@ const TaskForm = () => {
     setText('')
   };
 
+
+
   return (
     <div>
       <form onSubmit={handleOnSubmit}>
@@ -28,7 +30,7 @@ const TaskForm = () => {
           placeholder=" task ..."
         />
         <button type="submit">Add</button>
-        <button>Clear</button>
+        <button onClick={clearTask}>Clear</button>
       </form>
     </div>
   );

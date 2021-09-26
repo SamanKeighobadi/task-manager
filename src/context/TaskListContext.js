@@ -1,9 +1,13 @@
 import React, { createContext, useState } from "react";
 
 export const TaskListContext = createContext({
-    tasks:[],
-    addNewTask:() => {},
-    deleteTask:() => {}
+  tasks: [],
+  editTask:'',
+  addNewTask: () => {},
+  deleteTask: () => {},
+  clearTask: () => {},
+  findTask: () => {},
+  EditTask: () => {},
 });
 
 const TaskListContextProvider = ({ children }) => {
@@ -13,16 +17,45 @@ const TaskListContextProvider = ({ children }) => {
     { id: 3, text: "Exersice" },
   ]);
 
+  const [editTask, setEditTask] = useState("");
+
   const addNewTask = (text) => {
     setTasks([...tasks, { text, id: Math.floor(Math.random() * 1000) }]);
   };
-  const deleteTask = id => {
-      const filteredTask = tasks.filter(task => task.id !==id)
-      setTasks(filteredTask)
-  }
+  const deleteTask = (id) => {
+    const filteredTask = tasks.filter((task) => task.id !== id);
+    setTasks(filteredTask);
+  };
+
+  const clearTask = () => {
+    setTasks([]);
+  };
+
+  const findTask = (id) => {
+    const dasm = tasks.find((task) => task.id === id);
+    setEditTask(dasm);
+  };
+
+  const EditTask = (text, id) => {
+    const newTasks = tasks.map((task) =>
+      task.id === id ? { text, id } : text
+    );
+
+    setTasks(newTasks);
+  };
 
   return (
-    <TaskListContext.Provider value={{ tasks ,addNewTask,deleteTask}}>
+    <TaskListContext.Provider
+      value={{
+        tasks,
+        addNewTask,
+        deleteTask,
+        clearTask,
+        findTask,
+        EditTask,
+        editTask,
+      }}
+    >
       {children}
     </TaskListContext.Provider>
   );
