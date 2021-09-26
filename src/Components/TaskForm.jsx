@@ -1,12 +1,28 @@
-import React from "react";
+import React, { useContext, useState } from "react";
+import { TaskListContext } from "../context/TaskListContext";
 
 const TaskForm = () => {
+  const { addNewTask } = useContext(TaskListContext);
+
+  const [text, setText] = useState("");
+
+  const handleTextChange = (e) => {
+    setText(e.target.value);
+  };
+
+  const handleOnSubmit = (e) => {
+    e.preventDefault();
+    addNewTask(text);
+    setText('')
+  };
+
   return (
     <div>
-      <form onSubmit={(e) => e.preventDefault()}>
+      <form onSubmit={handleOnSubmit}>
         <input
           type="text"
           name="task"
+          onChange={handleTextChange}
           required
           autoFocus
           placeholder=" task ..."

@@ -8,8 +8,13 @@ const TaskListContextProvider = ({ children }) => {
     { id: 2, text: "Learn Context" },
     { id: 3, text: "Exersice" },
   ]);
+
+  const addNewTask = (text) => {
+    setTasks([...tasks, { text, id: Math.floor(Math.random() * 1000) }]);
+  };
+
   return (
-    <TaskListContext.Provider value={{ tasks }}>
+    <TaskListContext.Provider value={{ tasks ,addNewTask}}>
       {children}
     </TaskListContext.Provider>
   );
