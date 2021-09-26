@@ -1,6 +1,10 @@
 import React, { createContext, useState } from "react";
 
-export const TaskListContext = createContext();
+export const TaskListContext = createContext({
+    tasks:[],
+    addNewTask:() => {},
+    deleteTask:() => {}
+});
 
 const TaskListContextProvider = ({ children }) => {
   const [tasks, setTasks] = useState([
@@ -12,9 +16,13 @@ const TaskListContextProvider = ({ children }) => {
   const addNewTask = (text) => {
     setTasks([...tasks, { text, id: Math.floor(Math.random() * 1000) }]);
   };
+  const deleteTask = id => {
+      const filteredTask = tasks.filter(task => task.id !==id)
+      setTasks(filteredTask)
+  }
 
   return (
-    <TaskListContext.Provider value={{ tasks ,addNewTask}}>
+    <TaskListContext.Provider value={{ tasks ,addNewTask,deleteTask}}>
       {children}
     </TaskListContext.Provider>
   );

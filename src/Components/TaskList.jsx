@@ -8,7 +8,7 @@ const TaskList = () => {
     <div>
       {tasks.map((task,index) => (
         <div key={index}>
-          <Task task={task.text} />
+          <Task task={task.text} id={task.id}/>
         </div>
       ))}
     </div>
