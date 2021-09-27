@@ -1,9 +1,9 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useState, useEffect } from "react";
 import { TaskListContext } from "../context/TaskListContext";
 
 const TaskForm = () => {
-
-  const { addNewTask, clearTask } = useContext(TaskListContext);
+  const { addNewTask, clearTask, editTask, EditTask } =
+    useContext(TaskListContext);
 
   const [text, setText] = useState("");
 
@@ -13,9 +13,21 @@ const TaskForm = () => {
 
   const handleOnSubmit = (e) => {
     e.preventDefault();
-    addNewTask(text);
-    setText("");
+    if (!editTask) {
+      addNewTask(text);
+      setText("");
+    } else {
+      EditTask(text, editTask.id);
+    }
   };
+
+  useEffect(() => {
+    if (editTask !== null) {
+      setText(editTask.text);
+    } else {
+      setText(" ");
+    }
+  }, [editTask]);
 
   return (
     <div className="text-center">
@@ -25,7 +37,7 @@ const TaskForm = () => {
           name="task"
           onChange={handleTextChange}
           value={text}
-          autoComplete
+          autoComplete="off"
           autoFocus
           placeholder=" Add task ..."
           className="block w-11/12 mx-auto rounded-full px-3 py-1 shadow-sm focus:outline-none hover:shadow-lg mt-2"
@@ -35,7 +47,7 @@ const TaskForm = () => {
             type="submit"
             className="bg-green-700 py-0 px-4 rounded text-white hover:bg-green-600 "
           >
-            Add
+            {editTask ? "Edit Task" : "Add Task"}
           </button>
           <button
             onClick={clearTask}

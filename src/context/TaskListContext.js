@@ -1,5 +1,5 @@
 import React, { createContext, useState } from "react";
-import uuidv4 from 'uuid/v4'
+import uuidv4 from "uuid/v4";
 import { toast } from "react-toastify";
 
 export const TaskListContext = createContext({
@@ -13,13 +13,12 @@ export const TaskListContext = createContext({
 });
 
 const TaskListContextProvider = ({ children }) => {
-
   const [tasks, setTasks] = useState([]);
   const [editTask, setEditTask] = useState("");
 
   const addNewTask = (text) => {
     if (text !== "" && text !== " ") {
-      setTasks([...tasks, { text, id: uuidv4()}]);
+      setTasks([...tasks, { text, id: uuidv4() }]);
       // toastify
       toast.success("Task Added", {
         position: "top-right",
@@ -57,28 +56,38 @@ const TaskListContextProvider = ({ children }) => {
   };
 
   const findTask = (id) => {
-    const dasm = tasks.find((task) => task.id === id);
-    setEditTask(dasm);
+    const taskFound = tasks.find((task) => task.id === id);
+    setEditTask(taskFound);
   };
 
   const EditTask = (text, id) => {
     const newTasks = tasks.map((task) =>
-      task.id === id ? { text, id } : text
+      task.id === id ? { text, id } : task
     );
 
     setTasks(newTasks);
+    setEditTask(null);
+
+    // toastify
+    toast.info("Task succefully Edit !", {
+      position: "top-right",
+      autoClose: 5000,
+      closeOnClick: true,
+      theme: "colored",
+      icon: false,
+    });
   };
 
   return (
     <TaskListContext.Provider
       value={{
         tasks,
+        editTask,
         addNewTask,
         deleteTask,
         clearTask,
         findTask,
         EditTask,
-        editTask,
       }}
     >
       {children}
