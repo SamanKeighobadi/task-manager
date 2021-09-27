@@ -2,6 +2,7 @@ import React, { useContext, useState } from "react";
 import { TaskListContext } from "../context/TaskListContext";
 
 const TaskForm = () => {
+
   const { addNewTask, clearTask } = useContext(TaskListContext);
 
   const [text, setText] = useState("");
@@ -23,6 +24,8 @@ const TaskForm = () => {
           type="text"
           name="task"
           onChange={handleTextChange}
+          value={text}
+          autoComplete
           autoFocus
           placeholder=" Add task ..."
           className="block w-11/12 mx-auto rounded-full px-3 py-1 shadow-sm focus:outline-none hover:shadow-lg mt-2"

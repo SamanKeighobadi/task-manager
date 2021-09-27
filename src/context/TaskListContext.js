@@ -1,5 +1,5 @@
 import React, { createContext, useState } from "react";
-
+import uuidv4 from 'uuid/v4'
 import { toast } from "react-toastify";
 
 export const TaskListContext = createContext({
@@ -13,17 +13,14 @@ export const TaskListContext = createContext({
 });
 
 const TaskListContextProvider = ({ children }) => {
-  const [tasks, setTasks] = useState([
-    { id: 1, text: "read book" },
-    { id: 2, text: "Learn Context" },
-    { id: 3, text: "Exersice" },
-  ]);
 
+  const [tasks, setTasks] = useState([]);
   const [editTask, setEditTask] = useState("");
 
   const addNewTask = (text) => {
     if (text !== "" && text !== " ") {
-      setTasks([...tasks, { text, id: Math.floor(Math.random() * 1000) }]);
+      setTasks([...tasks, { text, id: uuidv4()}]);
+      // toastify
       toast.success("Task Added", {
         position: "top-right",
         autoClose: 5000,
@@ -32,9 +29,11 @@ const TaskListContextProvider = ({ children }) => {
       });
     }
   };
+
   const deleteTask = (id) => {
     const filteredTask = tasks.filter((task) => task.id !== id);
     setTasks(filteredTask);
+    // toastify
     toast.error("Task Removed", {
       position: "top-right",
       autoClose: 5000,
@@ -47,6 +46,7 @@ const TaskListContextProvider = ({ children }) => {
 
   const clearTask = () => {
     setTasks([]);
+    // toastify
     toast.error("All Tasks Cleared", {
       position: "top-right",
       autoClose: 5000,
