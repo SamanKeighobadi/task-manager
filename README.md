@@ -10,5 +10,3 @@
   <li> uuid </li>
 <ul>
 
-## Target: 
-  <p> Practic Context Api in React </p> 
