@@ -1,7 +1,6 @@
 # Task Manager with React.js + Context Api
 
 ## Dependences used:
-
 <ul>
   <li> Tailwindcss </li>
   <li> Context Api </li>
