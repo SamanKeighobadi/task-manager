@@ -12,11 +12,11 @@ const Task = ({ task, id }) => {
     <div className='my-3  flex justify-between align-middle'>
       <h3 className='text-white font-semibold'>{task}</h3>
       <div className='flex '>
-        <span className='pr-3' onClick={() => deleteTask(id)}>
-          <AiTwotoneDelete className='text-indigo-50 cursor-pointer' />
+        <span className='pr-3 text-red-500' onClick={() => deleteTask(id)}>
+          <AiTwotoneDelete className=' cursor-pointer' />
         </span>{" "}
-        <span onClick={() => findTask(id)}>
-          <AiTwotoneEdit className='text-gray-50 cursor-pointer' />
+        <span className="text-blue-900" onClick={() => findTask(id)}>
+          <AiTwotoneEdit className=' cursor-pointer' />
         </span>{" "}
       </div>
     </div>
@@ -25,7 +25,7 @@ const Task = ({ task, id }) => {
 
 Task.propTypes = {
   taks:PropTypes.string,
-  id:PropTypes.number
+  id:PropTypes.string
 }
 
 export default Task;
