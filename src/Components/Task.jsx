@@ -3,6 +3,7 @@ import React, { useContext } from "react";
 import { TaskListContext } from "../context/TaskListContext";
 // React Icons
 import { AiTwotoneDelete, AiTwotoneEdit } from "react-icons/ai";
+import PropTypes from 'prop-types'
 
 const Task = ({ task, id }) => {
   const { deleteTask, findTask } = useContext(TaskListContext);
@@ -21,5 +22,10 @@ const Task = ({ task, id }) => {
     </div>
   );
 };
+
+Task.propTypes = {
+  taks:PropTypes.string,
+  id:PropTypes.number
+}
 
 export default Task;
