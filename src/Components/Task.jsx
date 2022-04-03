@@ -1,7 +1,6 @@
 import React, { useContext } from "react";
 // Context
 import { TaskListContext } from "../context/TaskListContext";
-// React Icons
 import { AiTwotoneDelete, AiTwotoneEdit } from "react-icons/ai";
 import PropTypes from 'prop-types'
 
