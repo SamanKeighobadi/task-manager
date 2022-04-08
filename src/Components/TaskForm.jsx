@@ -47,7 +47,7 @@ const TaskForm = () => {
             type="submit"
             className="bg-green-700 py-0 px-4 rounded text-white hover:bg-green-600 "
           >
-            {editTask ? "Edit Task" : "Add Task"}
+            {editTask ? "Edit" : "Add "}
           </button>
           <button
             onClick={clearTask}

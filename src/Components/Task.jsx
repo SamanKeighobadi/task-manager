@@ -8,13 +8,13 @@ const Task = ({ task, id }) => {
   const { deleteTask, findTask } = useContext(TaskListContext);
 
   return (
-    <div className='my-3  flex justify-between align-middle'>
+    <div className='my-3  flex justify-between items-center'>
       <h3 className='text-white font-semibold'>{task}</h3>
       <div className='flex '>
         <span className='pr-3 text-red-500' onClick={() => deleteTask(id)}>
           <AiTwotoneDelete className=' cursor-pointer' />
         </span>{" "}
-        <span className="text-blue-900" onClick={() => findTask(id)}>
+        <span className="text-purple-900" onClick={() => findTask(id)}>
           <AiTwotoneEdit className=' cursor-pointer' />
         </span>{" "}
       </div>

@@ -9,9 +9,9 @@ import { ToastContainer } from "react-toastify";
 
 const App = () => {
   return (
-    <div className="h-screen bg-indigo-900 flex justify-center items-center">
+    <div className="h-screen bg-purple-900 flex justify-center items-center">
       <TaskListContextProvider>
-        <div className="bg-indigo-400 overflow-y-auto rounded max-w-lg h-4/6 py-3 px-7 shadow-xl">
+        <div className="bg-purple-500 overflow-y-auto rounded   h-4/6 py-3 px-14 lg:px-7 sm:px-10 md:px-12 shadow-xl">
           <Header />
           <TaskForm />
           <TaskList />
